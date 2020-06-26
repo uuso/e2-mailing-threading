@@ -1,0 +1,6 @@
+{
+  "name": "Mailing Simple App",
+  "description": "Some app to practice with threading in python with django&email",
+  "image": "heroku/python",
+  "keywords": ["python", "django" ]
+}

@@ -127,3 +127,6 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_SENDER = os.getenv('EMAIL_SENDER')
+
+import django_heroku
+django_heroku.settings(locals())
