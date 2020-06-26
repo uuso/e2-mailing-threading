@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseNotFound
 from django.core.mail import send_mail
-import settings
+from django.conf import settings
 import threading
 import time
 planned_message = namedtuple('planned_message', ['id', 'email', 'message', 'date', 'sec'])
