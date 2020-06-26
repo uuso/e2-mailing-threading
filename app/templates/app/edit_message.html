@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Enter your message</title>
+</head>
+<body>
+<div class="container">
+<div class="row mt-2">
+    <div class="col">
+        <a href="{% url 'index' %}">&lt;&lt; Back to scheduler</a>
+    </div>
+</div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-7">
+            {% comment %} {% if error %}<p class="text-danger">{{ error }}</p>{% endif %} {% endcomment %}
+            <form method="post" action="{% url 'index' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ id }}">
+                <div class="form-group">
+                    <label for="exampleInputEmail">To:</label>
+                    <input type="email" class="form-control" id="exampleInputEmail" 
+                        aria-describedby="emailHelp" name="email" value="{{ email }}">
+                    <small id="emailHelp" class="form-text text-muted">Enter recipient's email.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputText">Message:</label>
+                    <textarea id="exampleInputText" rows="3" class="form-control" id="exampleInputText" 
+                    aria-describedby="textHelp" name="message"> {{ message }} </textarea>
+                    <small id="textHelp" class="form-text text-muted">Enter email message.</small>
+                </div>
+                <div class="form-group form-row justify-content-between">
+                    <div class="col-auto">
+                        <label>Send it in</label>
+                        <input type="number" min=1 name="sec" {% if sec %} value="{{ sec }}" disabled {% else %}value="1"{% endif %}>
+                        <label> seconds.</label>
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-primary px-4" type="submit" value="Schedule it!" {% if sec %} disabled {% endif %}>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

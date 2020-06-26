@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Scheduled messages</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-8">
+                <h3>List of scheduled messages:</h3>
+                {% if too_many %} <h4 class="text-danger">Превышение допустимой рассылки.<br>Сообщение не было добавлено в очередь.</h4> {% endif %}
+                <ol>
+                {% for msg in messages %}
+                    <li>
+                        {% comment %} {% if msg.date %} {% endcomment %}
+                        {% comment %} {% url message msg.id %} {% endcomment %}
+                        <a href="{% url 'message-update' msg.id %}">Send &quot;{{ msg.message }}&quot; to &quot;{{ msg.email }}&quot; in {{ msg.sec }} seconds.</a><sup>Added at {{ msg.date|time:"H:i:s" }}</sup>
+                        {% comment %} {% else %}
+                        <a href="#"><span class="text-secondary">Sended &quot;{{ msg.message }}&quot; to &quot;{{ msg.email }}&quot;.</span></a>
+                        {% endif %} {% endcomment %}
+                    </li>
+                {% endfor %}
+                </ol>
+                <a href="{% url 'message-create' %}"><button class="btn btn-danger">Add</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
